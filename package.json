@@ -1,0 +1,13 @@
+{
+  "name": "scaffold",
+  "version": "0.0.1",
+  "description": "El gran creador de archivos en Typescript",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Guilherme Filipi Sperb",
+  "license": "ISC"
+}
