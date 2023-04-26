@@ -1,14 +1,14 @@
 const fs = require('fs')
 
+const fileExtension = '.ts';
+
 class CreateFile {
     constructor (fileName) {
         this.fileName = fileName
     }
 
     saveFile(text) {
-        console.log(this.fileName);
-        console.log(text)
-        fs.writeFileSync(this.fileName+'terter', text)
+        fs.writeFileSync(this.fileName+fileExtension, text)
     }
 }
 
