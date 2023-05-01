@@ -19,7 +19,10 @@ const paths = {
 }
 
 var className = process.argv[2]
-// console.log(className)
+
+if (!className) {
+    throw new Error("Class Name is required")
+}
 
 const createEntity = new CreateEntity(
     className,
