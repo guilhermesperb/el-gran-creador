@@ -1,9 +1,18 @@
 class Scaffold {
-    constructor(entityUseCase, controllerUseCase, repositoryUseCase, factoryUseCase){
+    constructor(
+        entityUseCase, 
+        controllerUseCase, 
+        repositoryUseCase, 
+        factoryUseCase, 
+        domainRepositoryUseCase,
+        portsUseCase
+    ){
         this.entityUseCase = entityUseCase;
         this.controllerUseCase = controllerUseCase;
         this.repositoryUseCase = repositoryUseCase;
-        this.factoryUseCase = factoryUseCase
+        this.factoryUseCase = factoryUseCase;
+        this.domainRepositoryUseCase = domainRepositoryUseCase
+        this.portsUseCase = portsUseCase;
     }
 
     run() {
@@ -11,6 +20,8 @@ class Scaffold {
         this.controllerUseCase.execute();
         this.repositoryUseCase.execute();
         this.factoryUseCase.execute();
+        this.domainRepositoryUseCase.execute();
+        this.portsUseCase.execute()
     }
 }
 

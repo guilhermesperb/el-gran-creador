@@ -10,7 +10,7 @@ class CreateRepository {
     }
 
     execute() {
-        const text = `import ${this.className} from "../../../domain/entities/${this.fileName}";
+        const text = `import ${this.className} from "../../../domain/entity/${this.fileName}";
 import I${this.className}Repository from "../../../domain/repository/${this.fileName}-repository";
 import { DbAccess } from 'db-access'
 import { dbAccess } from "../../../main/config/database";
