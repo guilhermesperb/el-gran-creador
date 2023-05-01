@@ -5,7 +5,8 @@ class Scaffold {
         repositoryUseCase, 
         factoryUseCase, 
         domainRepositoryUseCase,
-        portsUseCase
+        portsUseCase,
+        useCaseUseCase,
     ){
         this.entityUseCase = entityUseCase;
         this.controllerUseCase = controllerUseCase;
@@ -13,6 +14,7 @@ class Scaffold {
         this.factoryUseCase = factoryUseCase;
         this.domainRepositoryUseCase = domainRepositoryUseCase
         this.portsUseCase = portsUseCase;
+        this.useCaseUseCase = useCaseUseCase
     }
 
     run() {
@@ -22,6 +24,7 @@ class Scaffold {
         this.factoryUseCase.execute();
         this.domainRepositoryUseCase.execute();
         this.portsUseCase.execute()
+        this.useCaseUseCase.execute();
     }
 }
 

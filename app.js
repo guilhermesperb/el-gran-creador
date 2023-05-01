@@ -6,6 +6,7 @@ const CreateFactory = require('./usecase/create-factory')
 const CreateDomainRepository = require('./usecase/create-domain-repository')
 const ElSalvadorDeLosArquivos = require('./usecase/create-file')
 const CreatePorts = require('./usecase/create-ports')
+const CreateUseCase = require('./usecase/create-usecase');
 const {kebabize} = require('./helpers/file-name')
 
 const basePath = './output';
@@ -15,7 +16,8 @@ const paths = {
     domainRepository: `${basePath}/domain/repository/`,
     repository: `${basePath}/repository/`,
     factory: `${basePath}/factory/`,
-    ports: `${basePath}/ports/`
+    ports: `${basePath}/ports/`,
+    usecase: `${basePath}/usecase/`
 }
 
 var className = process.argv[2]
@@ -52,6 +54,11 @@ const createPorts = new CreatePorts(
     new ElSalvadorDeLosArquivos(paths.ports+kebabize(className))
 );
 
+const createUseCase = new CreateUseCase(
+    className,
+    new ElSalvadorDeLosArquivos(paths.usecase+kebabize(className))
+);
+
 const scaffold = new Scaffold(
     createEntity,
     createController,
@@ -59,5 +66,6 @@ const scaffold = new Scaffold(
     createFactory,
     createDomainRepository,
     createPorts,
+    createUseCase
 )
 scaffold.run()

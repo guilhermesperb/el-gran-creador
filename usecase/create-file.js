@@ -12,8 +12,8 @@ class CreateFile {
     }
 
     setFileName(filename) {
-        this.fileName = this.fileName.split('/').slice(0, -1).join('/')
-        this.fileName = `${this.fileName}/${filename}`
+        const filepath = this.fileName.split('/').slice(0, -1).join('/')
+        this.fileName = `${filepath}/${filename}`
     }
 }
 
