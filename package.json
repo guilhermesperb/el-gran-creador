@@ -4,10 +4,13 @@
   "description": "El gran creador de archivos en Typescript",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "npx ts-node-dev --respawn --transpile-only -- src/main.ts", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Guilherme Filipi Sperb",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
 }

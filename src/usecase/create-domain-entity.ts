@@ -1,8 +1,7 @@
-class CreateEntity {
-    constructor (className, elSalvador) {
-        this.className = className;
-        this.elSalvador = elSalvador;
-    }
+import { FileCreator } from "../domain/file-creator"
+
+export class CreateEntity {
+    constructor (private readonly className: string, private readonly elSalvador: FileCreator) {}
 
     execute() {
         const text = `import { v4 as uuid } from "uuid";
@@ -20,5 +19,3 @@ export default class ${this.className} {
         this.elSalvador.saveFile(text)
     }
 }
-
-module.exports = CreateEntity; 

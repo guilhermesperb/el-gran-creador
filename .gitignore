@@ -1,2 +1,5 @@
 node_modules/
-*.ts
+output/
+dist/
+
+package-lock.json

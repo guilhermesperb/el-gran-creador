@@ -1,8 +1,12 @@
+import { FileCreator } from "../domain/file-creator";
+
 const {kebabize, camelcalize} = require('../helpers/file-name')
 
-class CreateUseCase {
-    constructor (className, elSalvador) {
-        this.className = className;
+export class CreateUseCase {
+    private varName: string;
+    private fileName: string;
+        
+    constructor (private readonly className: string, private readonly elSalvador: FileCreator) {
         this.varName = camelcalize(className)
         this.fileName = kebabize(className)
         this.elSalvador = elSalvador;
@@ -10,13 +14,12 @@ class CreateUseCase {
 
     createCreate(){
         this.elSalvador.setFileName(`create-${this.fileName}`)
-        const text = `import I${this.className}Repository from "../../../domain/repository/${this.fileName}-repository";
-import { ICreate${this.className} } from "../../ports/create-${this.fileName}";
+        const text = `import ${this.className}Repository from "../../../domain/repository/${this.fileName}-repository";
 import ${this.className} from "../../../domain/entity/${this.fileName}";
 
-export class Create${this.className} implements ICreate${this.className}{
+export class Create${this.className} {
     constructor (
-        private readonly ${this.varName}Repository: I${this.className}Repository
+        private readonly ${this.varName}Repository: ${this.className}Repository
     ){}
 
     async execute(data: any): Promise<any> {
@@ -29,13 +32,12 @@ export class Create${this.className} implements ICreate${this.className}{
     }
     createUpdate(){
         this.elSalvador.setFileName(`update-${this.fileName}`)
-        const text = `import I${this.className}Repository from '../../../domain/repository/${this.fileName}-repository';
-import { IUpdate${this.className} } from '../../ports/update-${this.fileName}';
+        const text = `import ${this.className}Repository from '../../../domain/repository/${this.fileName}-repository';
 import ${this.className} from "../../../domain/entity/${this.varName}";
 
-export class Update${this.className} implements IUpdate${this.className}{
+export class Update${this.className} {
     constructor (
-        private readonly ${this.varName}Repository: I${this.className}Repository
+        private readonly ${this.varName}Repository: ${this.className}Repository
     ){}
 
     async execute(data: any): Promise<any> {
@@ -51,13 +53,12 @@ export class Update${this.className} implements IUpdate${this.className}{
     }
     createDelete(){
         this.elSalvador.setFileName(`delete-${this.fileName}`)
-        const text = `import I${this.className}Repository from '../../../domain/repository/${this.fileName}-repository';
-import { IDelete${this.className} } from '../../ports/delete-${this.fileName}';
+        const text = `import ${this.className}Repository from '../../../domain/repository/${this.fileName}-repository';
 import ${this.className} from "../../../domain/entity/${this.varName}";
 
-export class Delete${this.className} implements IDelete${this.className}{
+export class Delete${this.className} {
     constructor (
-        private readonly ${this.varName}Repository: I${this.className}Repository
+        private readonly ${this.varName}Repository: ${this.className}Repository
     ){}
 
     async execute(data: any): Promise<any> {
@@ -72,10 +73,9 @@ export class Delete${this.className} implements IDelete${this.className}{
     }
     createGetAll(){
         this.elSalvador.setFileName(`get-all-${this.fileName}s`)
-        const text = `import I${this.className}sRepository from "../../../domain/repositories/${this.fileName}s-repository";
-import { IGetAll${this.className}s } from "../../ports/get-all-${this.fileName}s";
+        const text = `import I${this.className}sRepository from "../../../domain/repositories/${this.fileName}-repository";
 
-export class GetAll${this.className}s implements IGetAll${this.className}s{
+export class GetAll${this.className}s {
     constructor (
         private readonly ${this.varName}sRepository: I${this.className}sRepository
     ){}
@@ -101,5 +101,3 @@ export class GetAll${this.className}s implements IGetAll${this.className}s{
         
     }
 }
-
-module.exports = CreateUseCase; 
